@@ -1,0 +1,17 @@
+ #include <iostream>
+ 
+ int longestUniqueSubsttr(string S){
+        map<char,int>mpp;
+        int left=0,maxi=0;
+        for(int right=0;right<S.size();right++){
+            mpp[S[right]]++;
+            while(mpp[S[right]]>1){
+                mpp[S[left]]--;
+                if(mpp[S[left]]==0){
+                    mpp.erase(S[left]);
+                }
+                left++;
+            }
+            maxi=max(maxi,right-left+1);
+        }
+        return maxi;
